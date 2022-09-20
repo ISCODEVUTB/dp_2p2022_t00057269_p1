@@ -64,6 +64,7 @@ class charCreationTest(unittest.TestCase):
     def test_de_job(self):
         self.assertEquals(self.darkElfMage.job, Mage())
 
+    # seting enemy tests
     def test_define_human_enemy(self):
         pross = BlueEnemyProcessor()
         self.assertAlmostEquals(self.IFicha.defineEnemy(self.humanoRouge), pross.IsEnemy(self.humanoRouge)) 
@@ -71,8 +72,8 @@ class charCreationTest(unittest.TestCase):
     def test_define_orc_enemy(self):
         pross = RedEnemyProcessor()
         self.assertAlmostEquals(self.IFicha.defineEnemy(self.orcWarrior), pross.IsEnemy(self.orcWarrior))
-
-   def test_define_de_enemy(self):
+    
+    def test_define_de_enemy(self):
         pross = BlueEnemyProcessor()
         self.assertAlmostEquals(self.IFicha.defineEnemy(self.darkElfMage), pross.IsEnemy(self.darkElfMage)) 
 
