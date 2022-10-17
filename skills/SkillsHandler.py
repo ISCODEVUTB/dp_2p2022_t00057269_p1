@@ -1,5 +1,5 @@
 from skills.SkillsBuildier import SkillsBuilder
-from passives.warrior.Fury import Fury 
+from skills.passives.warrior.Fury import Fury 
 
 
 class SkillHandler:
