@@ -44,12 +44,6 @@ class objects_creation_test(unittest.TestCase):
         constructed_job = self.jobHandler.get_Job()
         self.assertEqual(constructed_job.__class__.__name__, "Jobs")
     
-    def mage_creation_test(self):
-        self.jobHandler.set_Job_Buldier(self.mage)
-        self.jobHandler.contructJob()
-        constructed_job = self.jobHandler.get_Job()
-        self.assertEqual(constructed_job.__class__.__name__, "Jobs")
-    
     def warrior_creation_test(self):
         self.jobHandler.set_Job_Buldier(self.warrior)
         self.jobHandler.contructJob()
