@@ -1,7 +1,7 @@
-from abc import  abstractmethod
+from abc import  ABC, abstractmethod
 from Jobs import Jobs
 
-class JobsBuilder:
+class JobsBuilder(ABC):
     _job: Jobs
 
     def get_job(self):
@@ -10,22 +10,17 @@ class JobsBuilder:
     def createNewJob(self):
         self.job = Jobs()
     
-    @abstractmethod
     def buildSkills(self):
         ...
     
-    @abstractmethod
     def buildPassives(self):
         ...
     
-    @abstractmethod
     def bulidDescription(self):
         ...
 
-    @abstractmethod
     def buildWeapon(self):
         ...
     
-    @abstractmethod
     def buildGear(self):
         ...

@@ -1,10 +1,11 @@
 from classjob.JobsBuilder import JobsBuilder
 from Weapons.WeaponsCreator import weaponsCreator
 from Gear.GearCreator import gearCreator
-from skills.passives.warrior.Fury import bfury
-from skills.actives.warrior.Slam import bslam
+from skills.SkillsCreator import SkillsCreator
 
 class warrior(JobsBuilder):
+
+    skillsCreator = SkillsCreator()
 
     def buildGear(self):
         self.job.set_gear(gearCreator.retrieveGear("Plates"))
@@ -13,14 +14,14 @@ class warrior(JobsBuilder):
         
         self.job.set_passives(
             {
-                "1": bfury
+                "1": self.skillsCreator.retrieveSkill("fury")
             }
         )
     
     def buildSkills(self):
         self.job.set_skills(
             {
-                "1": bslam
+                "1": self.skillsCreator.retrieveSkill("slam")
             }
         )
     

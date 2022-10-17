@@ -35,5 +35,5 @@ class Jobs:
     def get_skills(self) -> dict:
         return self.skills
 
-    def getName(self):
+    def get_name(self):
         return self.__class__.__name__

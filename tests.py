@@ -4,8 +4,10 @@ from skills.SkillsCreator import SkillsCreator
 from skills.passives.mage.manaRegn import manaRegn
 from classjob.JobsHandler import JobsHandler
 from classjob.Mage import Mage
+from classjob.Warrior import warrior
 from Weapons.WeaponsCreator import WeaponCreator
 from Gear.GearCreator import GearCreator
+from EnemyProcessor import EnemyProcessor
 
 
 class objectsCreationTest(unittest.TestCase):
@@ -16,7 +18,14 @@ class objectsCreationTest(unittest.TestCase):
     skillsCreator = SkillsCreator()
     jobHandler = JobsHandler()
     habi = manaRegn() 
-    job = Mage()
+    mage = Mage()
+    warrior = warrior()
+    ep = EnemyProcessor()
+
+    def  ep_test(self):
+        char = self.charCreator.retrieve_character("orc")
+        enemy = self.ep.isEnemy(char)
+        self.assertEquals(enemy, "BLUE")
 
     def character_creation_test(self):
         char = self.charCreator.retrieve_character("human")
@@ -27,8 +36,20 @@ class objectsCreationTest(unittest.TestCase):
         fury = self.skillsCreator.retrieveSkill("fury")
         self.assertEquals(fury.__class__.__name__, "Fury")
     
-    def job_creation_test(self):
-        self.jobHandler.set_Job_Buldier(self.job)
+    def mage_creation_test(self):
+        self.jobHandler.set_Job_Buldier(self.mage)
+        self.jobHandler.contructJob()
+        constructed_job = self.jobHandler.get_Job()
+        self.assertEquals(constructed_job.__class__.__name__, "Jobs")
+    
+    def mage_creation_test(self):
+        self.jobHandler.set_Job_Buldier(self.mage)
+        self.jobHandler.contructJob()
+        constructed_job = self.jobHandler.get_Job()
+        self.assertEquals(constructed_job.__class__.__name__, "Jobs")
+    
+    def warrior_creation_test(self):
+        self.jobHandler.set_Job_Buldier(self.warrior)
         self.jobHandler.contructJob()
         constructed_job = self.jobHandler.get_Job()
         self.assertEquals(constructed_job.__class__.__name__, "Jobs")
@@ -48,7 +69,3 @@ class objectsCreationTest(unittest.TestCase):
                 "gloves": self.Gloves.clone(type),
                 "shoes": self.Shoes.clone(type)
                 }""")
-                
-        
-
-

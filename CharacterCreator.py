@@ -3,13 +3,12 @@ from Races.Orcs import Orc
 
 class CharCreator:
     
-    Human = Human()
-    Orc = Orc()
+    human = Human()
+    orc = Orc()
     
     def retrieve_character(self, race:str):
         if race == "human":
             return self.Human.clone()
-        if race == "Orc":
+        if race == "orc":
             return self.Orc.clone()
-
         return None 
