@@ -1,82 +1,56 @@
 import unittest
-from BlueSidedRaces import *
-from EnemyProcessor import BlueEnemyProcessor
-from RedSidedRaces import *
-from Jobs import *
-from IFicha import *
-from EnemyProcessor import *
+from CharacterCreator import CharCreator
+from skills.SkillsHandler import SkillHandler
+from skills.passives.mage.manaRegn import manaRegn
+from Jobs.JobsHandler import JobsHandler
+from Jobs.Mage import Mage
+from Weapons.WeaponsCreator import WeaponCreator
+from Gear.GearCreator import GearCreator
 
 
-class charCreationTest(unittest.TestCase):
+class objectsCreationTest(unittest.TestCase):
 
-    IFicha = IFicha()
+    gearCreator = GearCreator()
+    weaponsCreator = WeaponCreator()
+    charCreator = CharCreator()
+    skillHandler = SkillHandler()
+    jobHandler = JobsHandler()
+    habi = manaRegn() 
+    job = Mage()
 
-    humanoRouge = Human("Santi",Rogue())
-    orcWarrior = Orc("Sebastian", Warrior())
-    darkElfMage = DarkElf("vale",Mage())
-
-    #human test
-    def test_human_sexsetter(self):
-        self.humanoRouge.set_sex("male")
-        self.assertEquals(self.humanoRouge.sex,'male')
-
-    def test_human_set_heigth(self):
-        self.humanoRouge.set_heigth("6'5")
-        self.assertEquals(self.humanoRouge.heigth,"6'5")
-
-    def test_human_set_width(self):
-        self.humanoRouge.set_width("50")
-        self.assertEquals(self.humanoRouge.width,"50")
-
-    def test_human_job(self):
-        self.assertEquals(self.humanoRouge.job, Rogue())
-
-    #orc Test
-    def test_orc_sexsetter(self):
-        self.orcWarrior.set_sex("male")
-        self.assertEquals(self.orcWarrior.sex, "male")
-
-    def test_orc_set_heigth(self):
-        self.orcWarrior.set_heigth("7'8")
-        self.assertEquals(self.orcWarrior.heigth,"7,8")
-
-    def test_orc_set_width(self):
-        self.orcWarrior.set_width("60")
-        self.assertEqual(self.orcWarrior.width, "60")
-
-    def test_orc_job(self):  
-        self.assertAlmostEquals(selforcWarrior.job, Warrior())
-
-
-    # dark elf test
-    def test_de_sexsetter(self):
-        self.darkElfMage.set_sex("female")
-        self.assertEquals(self.darkElfMage.sex, "female")
-
-    def test_de_set_heigth(self):    
-        self.darkElfMage.set_heigth("5'7")
-        self.assertEquals(self.darkElfMage.heigth,"5'7")
-
-    def test_de_set_width(self):
-        self.darkElfMage.set_width("30")
-        self.assertEquals(self.darkElfMage.width,"30")
+    def character_creation_test(self):
+        char = self.charCreator.retrieve_character("human")
+        charRace = char.__class__.__name__
+        self.assertEqual(charRace,"Human")
     
-    def test_de_job(self):
-        self.assertEquals(self.darkElfMage.job, Mage())
-
-    # seting enemy tests
-    def test_define_human_enemy(self):
-        pross = BlueEnemyProcessor()
-        self.assertAlmostEquals(self.IFicha.defineEnemy(self.humanoRouge), pross.IsEnemy(self.humanoRouge)) 
-
-    def test_define_orc_enemy(self):
-        pross = RedEnemyProcessor()
-        self.assertAlmostEquals(self.IFicha.defineEnemy(self.orcWarrior), pross.IsEnemy(self.orcWarrior))
+    def skill_creation_test(self):
+        self.skillHandler.set_skill_builder(self.habi)
+        self.skillHandler.constructSkill()
+        contructed_skill = self.skillHandler.get_Skill()
+        self.assertEquals(contructed_skill.__class__.__name__, "Skill")
     
-    def test_define_de_enemy(self):
-        pross = BlueEnemyProcessor()
-        self.assertAlmostEquals(self.IFicha.defineEnemy(self.darkElfMage), pross.IsEnemy(self.darkElfMage)) 
+    def job_creation_test(self):
+        self.jobHandler.set_Job_Buldier(self.job)
+        self.jobHandler.contructJob()
+        constructed_job = self.jobHandler.get_Job()
+        self.assertEquals(constructed_job.__class__.__name__, "Jobs")
+    
+    def weapon_creation_test(self):
+        weapon = self.weaponsCreator.retrieveWeapon("staves")
+        weapon_name = weapon.__class__.__name__
+        self.assertEquals(weapon_name, "Stave")
+    
+    def gear_creation_test(self):
+        gear = str(self.gearCreator.retrieveGear("plate"))
+        self.assertEquals(gear, """{
+                "head":self.Head.clone(type),
+                "shoulders": self.Shoulders(type),
+                "top": self.Top.clone(type),
+                "bottom": self.Botton.clone(type),
+                "gloves": self.Gloves.clone(type),
+                "shoes": self.Shoes.clone(type)
+                }""")
+                
+        
 
 
-if __name__ == '__main__':
-    unittest.main
