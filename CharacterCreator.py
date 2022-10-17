@@ -1,10 +1,10 @@
-from Races.Humans import Humans
-from Races.Orcs import Orcs
+from Races.Humans import Human
+from Races.Orcs import Orc
 
 class CharCreator:
     
-    Human = Humans()
-    Orc = Orcs()
+    Human = Human()
+    Orc = Orc()
     
     def retrieve_character(self, race:str):
         if race == "human":
