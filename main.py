@@ -1,10 +1,9 @@
-from unicodedata import name
 from CharacterCreator import CharCreator
-from Jobs.JobsHandler import JobsHandler
-from Jobs.Mage import Mage
-from Jobs.Warrior import warrior 
+from classjob.Mage import Mage
+from classjob.Warrior import warrior
+from classjob.JobsHandler import JobsHandler 
 
-jobsHandler =JobsHandler()
+jobsHandler = JobsHandler()
 characterCreator = CharCreator()
 
 print("chose a race")
