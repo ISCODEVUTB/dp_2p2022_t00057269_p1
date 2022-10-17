@@ -1,5 +1,5 @@
 from skills.SkillsBuildier import SkillsBuilder
-from skills.SkillsHandler import skillHandler
+from skills.SkillsHandler import SkillHandler
 
 class manaRegn(SkillsBuilder):
 
@@ -28,6 +28,7 @@ class manaRegn(SkillsBuilder):
         self._skill.set_kind("passive")
 
 manaren = manaRegn()
+skillHandler = SkillHandler()
 skillHandler.set_skill_builder(manaRegn)
 skillHandler.constructSkill()
 bmanaReng = skillHandler.get_Skill()

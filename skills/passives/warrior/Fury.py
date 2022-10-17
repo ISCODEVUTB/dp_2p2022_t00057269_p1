@@ -1,5 +1,5 @@
 from skills.SkillsBuildier import SkillsBuilder
-from skills.SkillsHandler import skillHandler
+from skills.SkillsHandler import SkillHandler
 
 
 
@@ -31,6 +31,7 @@ class Fury(SkillsBuilder):
         self._skill.set_kind("passive")
 
 fury = Fury()
+skillHandler = SkillHandler()
 skillHandler.set_skill_builder(Fury)
 skillHandler.constructSkill()
 bfury = skillHandler.get_Skill()
