@@ -1,5 +1,5 @@
 from abc import ABC
-from Skills import Skills
+from skills.Skills import Skills
 
 
 class SkillsBuilder(ABC):
