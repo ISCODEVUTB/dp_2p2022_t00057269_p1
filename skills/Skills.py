@@ -1,10 +1,18 @@
+from abc import ABC
 
-class Skills:
+
+class Skills(ABC):
     kind: str
     dmg: int
     heal: int
     description: str
     efects:str
+
+    def __init__(self) -> None:
+        print("hello")
+
+    def clone(self):
+        ...
 
     def get_description(self):
         return self.description

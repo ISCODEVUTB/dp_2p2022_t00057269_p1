@@ -1,33 +1,12 @@
-from skills.SkillsBuildier import SkillsBuilder
-from skills.SkillsHandler import skillHandler
+from skills.Skills import Skills
 
 
-class FrostBolt(SkillsBuilder):
+class FrostBolt(Skills):
 
-    def buildDescription(self):
-        self._skill.set_description(
-            """
-                cast a frost bold at the direcction of the enemy 
-            """
-        )
-    
-    def buildDmg(self):
-        self._skill.set_dmg(30)
-    
-    def buildEfects(self):
-        self._skill.set_efects(
-            """
-            cause the enemy gets slowed for 2 seconds. 
-            """
-        )
-    
-    def buildHeal(self):
-        self._skill.get_heal(0)
-    
-    def buildKind(self):
-        self._skill.set_kind("active")
+    def __init__(self) -> None:
+        self.kind = "active"
 
-fbold = FrostBolt()
-skillHandler.set_skill_builder(fbold)
-skillHandler.constructSkill()
-bfbold = skillHandler.get_Skill()
+    def clone(self):
+        return FrostBolt()
+
+ 
