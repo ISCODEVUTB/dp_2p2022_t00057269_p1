@@ -1,18 +1,18 @@
 from classjob.JobsBuilder import JobsBuilder;
 
 class JobsHandler:
-    jobsBuldier: JobsBuilder
+    jobsBuilder: JobsBuilder
 
     def set_Job_Buldier(self, jb: JobsBuilder):
-        self.jobsBuldier = jb
+        self.jobsBuilder = jb
     
     def get_Job(self):
-        return self.jobsBuldier.getJob()
+        return self.jobsBuilder.get_job()
     
     def contructJob(self):
-        self.JobsBuilder.createNewJob()
-        self.JobsBuilder.buildSkills()
-        self.JobsBuilder.buildPassives()
-        self.JobsBuilder.bulidDescription()
-        self.JobsBuilder.buildWeapon()
-        self.JobsBuilder.buildGear()
+        self.jobsBuilder.createNewJob()
+        self.jobsBuilder.buildSkills()
+        self.jobsBuilder.buildPassives()
+        self.jobsBuilder.bulidDescription()
+        self.jobsBuilder.buildWeapon()
+        self.jobsBuilder.buildGear()

@@ -1,7 +1,7 @@
 from Characters import Character
 
 class EnemyProcessor:
-    def is_enemy(sefl, char:Character):
+    def is_enemy(self, char:Character):
         if char.get_side() == "BLUE":
             print("enemy ---> RED")
             return "RED"

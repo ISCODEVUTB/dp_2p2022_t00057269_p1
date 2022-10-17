@@ -21,7 +21,7 @@ char.set_sex(csex)
 cwitgd = float(input("character width"))
 char.set_width(cwitgd)
 cheight = float(input("character height"))
-char.set_height(cheight)
+char.set_heigth(cheight)
 
 option2 = input("choose a job for the character (type-> mage or warrior ")
 if option2 == "mage":
@@ -35,7 +35,7 @@ if option2 == "warrior":
     jobsHandler.contructJob()
     char.set_job(jobsHandler.get_Job())
 
-char.__str__()
+print(char.__str__())
 
     
 

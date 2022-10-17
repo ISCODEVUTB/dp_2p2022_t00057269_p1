@@ -65,7 +65,6 @@ class Character(ABC):
             "description": self.description,
             "width": self.width,
             "heigth":self.height,
-            "racial": self.racial,
             "side": self.SIDE,
-            "job": self.job
+            "job": self.job.__class__.__name__
         })

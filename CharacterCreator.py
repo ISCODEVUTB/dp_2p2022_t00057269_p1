@@ -8,7 +8,7 @@ class CharCreator:
     
     def retrieve_character(self, race:str):
         if race == "human":
-            return self.Human.clone()
+            return self.human.clone()
         if race == "orc":
-            return self.Orc.clone()
+            return self.orc.clone()
         return None 

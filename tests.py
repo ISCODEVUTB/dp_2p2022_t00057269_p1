@@ -10,7 +10,7 @@ from Gear.GearCreator import GearCreator
 from EnemyProcessor import EnemyProcessor
 
 
-class objectsCreationTest(unittest.TestCase):
+class objects_creation_test(unittest.TestCase):
 
     gearCreator = GearCreator()
     weaponsCreator = WeaponCreator()
@@ -29,8 +29,11 @@ class objectsCreationTest(unittest.TestCase):
 
     def character_creation_test(self):
         char = self.charCreator.retrieve_character("human")
+        char.set_name("santiago")
+        char.set_sex("hombre")
+        name = char.get(name)
         charRace = char.__class__.__name__
-        self.assertEqual(charRace,"Human")
+        self.assertEqual(name,"Santiago")
     
     def skill_creation_test(self):
         fury = self.skillsCreator.retrieveSkill("fury")

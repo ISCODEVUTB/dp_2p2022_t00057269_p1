@@ -26,7 +26,7 @@ class warrior(JobsBuilder):
         )
     
     def buildWeapon(self):
-        self.job.get_weapons(
+        self.job.set_weapons(
             {
                 "1": weaponsCreator.retrieveWeapon("Two hands"),
                 "2": weaponsCreator.retrieveWeapon("One hand"),
