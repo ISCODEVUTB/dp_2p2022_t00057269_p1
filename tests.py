@@ -2,8 +2,8 @@ import unittest
 from CharacterCreator import CharCreator
 from skills.SkillsCreator import SkillsCreator
 from skills.passives.mage.manaRegn import manaRegn
-from Jobs.JobsHandler import JobsHandler
-from Jobs.Mage import Mage
+from classjob.JobsHandler import JobsHandler
+from classjob.Mage import Mage
 from Weapons.WeaponsCreator import WeaponCreator
 from Gear.GearCreator import GearCreator
 
