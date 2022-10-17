@@ -1,4 +1,4 @@
-from SkillsBuildier import SkillsBuilder
+from skills.SkillsBuildier import SkillsBuilder
 from passives.warrior.Fury import Fury 
 
 
