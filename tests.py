@@ -1,6 +1,6 @@
 import unittest
 from CharacterCreator import CharCreator
-from skills.SkillsHandler import SkillHandler
+from skills.SkillsCreator import SkillsCreator
 from skills.passives.mage.manaRegn import manaRegn
 from Jobs.JobsHandler import JobsHandler
 from Jobs.Mage import Mage
@@ -13,7 +13,7 @@ class objectsCreationTest(unittest.TestCase):
     gearCreator = GearCreator()
     weaponsCreator = WeaponCreator()
     charCreator = CharCreator()
-    skillHandler = SkillHandler()
+    skillsCreator = SkillsCreator()
     jobHandler = JobsHandler()
     habi = manaRegn() 
     job = Mage()
@@ -24,10 +24,8 @@ class objectsCreationTest(unittest.TestCase):
         self.assertEqual(charRace,"Human")
     
     def skill_creation_test(self):
-        self.skillHandler.set_skill_builder(self.habi)
-        self.skillHandler.constructSkill()
-        contructed_skill = self.skillHandler.get_Skill()
-        self.assertEquals(contructed_skill.__class__.__name__, "Skill")
+        fury = self.skillsCreator.retrieveSkill("fury")
+        self.assertEquals(fury.__class__.__name__, "Fury")
     
     def job_creation_test(self):
         self.jobHandler.set_Job_Buldier(self.job)
