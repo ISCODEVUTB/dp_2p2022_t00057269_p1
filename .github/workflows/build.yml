@@ -1,0 +1,52 @@
+name: Build on sonar
+
+on:
+  push:
+    branches:
+      - sonarqube
+  pull_request:
+    types: [opened, synchronize, reopened]
+    
+  workflow_dispatch:
+    
+jobs:
+  build:
+    name: Build
+    
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+          
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        run: |
+          dotnet tool install --global dotnet-sonarscanner
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.301
+          
+      - name: Install Report Generator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: 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  # Needed to get PR information, if any
+          SONAR_TOKEN: 2c558aaf80d552d1c7acb6ee28cd88663685f3d7
+        #shell: powershell
+        run: |
+          dotnet-sonarscanner begin /k:"felipementel_PotatoStore" /o:"felipementel" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet restore ./src/Potato.Product.sln
+          dotnet build ./src/Potato.Product.sln --configuration Release
+          dotnet test ./src/Tests/Potato.Product.Api.Test/Potato.Product.Api.Test.csproj --collect:"XPlat Code Coverage" --logger trx --results-directory $GITHUB_WORKSPACE/test/testresults
+          reportgenerator -reports:$GITHUB_WORKSPACE/test/testresults/**/coverage.cobertura.xml -targetdir:$GITHUB_WORKSPACE/test/coverlet/reports -reporttypes:"SonarQube"
+          dotnet-sonarscanner end /d:sonar.login="2c558aaf80d552d1c7acb6ee28cd88663685f3d7"
